@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>box-shadow-experiment</title>
+        <style type="text/css">
+        body
+        {
+            background-image: url(sea.jpeg);
+        }
+            .box-shadow-div{
+                position: fixed;
+                width: 60px;
+                height: 60px;
+                border-radius: 100%;
+                top: 49%;
+                left: 48.85%;
+                transition: all 1s ease;
+            }
+
+img.box-shadow-div.a1 {
+                top: 37px;
+                left: 5px;
+                margin: 50px;
+}
+img.box-shadow-div.a2 {
+                top: 55px;
+                left: 20px;
+                margin: 70px;
+}
+img.box-shadow-div.a3 {
+                top: 80px;
+                left: 39px;
+                margin: 90px;
+}
+img.box-shadow-div.a4 {
+                top: 110px;
+                left: 50px;
+                margin: 110px;
+}
+img.box-shadow-div.a5 {
+                top: 160px;
+                left: 72px;
+                margin: 130px;
+}
+img.box-shadow-div.a6 {
+                top: 160px;
+                right: 72px;
+                margin: 220px;
+}
+img.box-shadow-div.a7 {
+                top: 160px;
+                right: 72px;
+                margin: 200px;
+}
+img.box-shadow-div.a8 {
+                top: 160px;
+                right: 72px;
+                margin: 180px;
+}
+img.box-shadow-div.a9 {
+                top: 160px;
+                right: 72px;
+                margin: 160px;
+}
+img.box-shadow-div.a10 {
+                top: 160px;
+                right: 72px;
+                margin: 140px;
+}
+        </style>
+            <script src="js/jquery-3.1.1.min.js"></script>
+
+        <script type="text/javascript">
+
+
+
+
+
+
+            window.onload = function(){
+
+                var bsDiv = $(".box-shadow-div");
+                var x, y;
+
+
+                var mouseXY = {};
+    $( document ).on( "mousemove", function( event ) {
+      mouseXY.X = event.pageX; 
+      mouseXY.Y = event.pageY;
+    });
+    var iCow = $(".box-shadow-div");
+    var prevXY = {X: null, Y: null};
+    var cowInterval = setInterval(function()
+    {
+    
+      
+      if(prevXY.Y != mouseXY.Y || prevXY.X != mouseXY.X && (prevXY.Y != null || prevXY.X != null)) {
+      
+      var cowXY = iCow.position();
+      var diffX = cowXY.left - mouseXY.X;
+      var diffY = cowXY.top - mouseXY.Y;
+      var tan = diffY / diffX;
+     
+      var atan = Math.atan(tan)* 180 / Math.PI;;
+       if(diffY > 0 && diffX > 0) {
+      
+      	atan += 180; 
+      }
+      else if(diffY < 0 && diffX > 0) {
+      
+      	atan -= 180;
+      }
+      
+      prevXY.X = mouseXY.X;
+      prevXY.Y = mouseXY.Y;
+      iCow.css({transform: "rotate(" + atan + "deg)"});
+    }
+    }, 10);
+
+
+    // On mousemove use event.clientX and event.clientY to set the location of the div to the location of the cursor:
+                window.addEventListener('mousemove', function(event){
+                    x = event.pageX;
+                    y = event.pageY;   
+                    //console.log(theta);
+                    if ( typeof x !== 'undefined' ){
+                        bsDiv.animate({left: x+"px"}, 20);
+                        bsDiv.animate({top: y+"px"}, 20);
+                    }
+                }, false);
+            }
+        </script>
+    </head>
+    <body>
+            <img class="box-shadow-div a1" src="rock.gif">
+            <img class="box-shadow-div a2" src="rock.gif">
+            <img class="box-shadow-div a3" src="rock.gif">
+            <img class="box-shadow-div a4" src="rock.gif">
+            <img class="box-shadow-div a5" src="rock.gif">
+
+            <img class="box-shadow-div a6" src="shark.gif">
+            <img class="box-shadow-div a7" src="shark.gif">
+            <img class="box-shadow-div a8" src="shark.gif">
+            <img class="box-shadow-div a9" src="shark.gif">
+            <img class="box-shadow-div a10" src="shark.gif">
+
+        </body>
+</html>
